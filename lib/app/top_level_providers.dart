@@ -12,15 +12,27 @@ final userCompleteIntroductionProvider = StateProvider((ref) => false);
 
 final bottomNavIndexProvider = StateProvider<int>((ref) {
   if (ref.watch(userCompleteIntroductionProvider).state)
-    return MAIN_PAGE;
+    return PORTFOLIO_PAGE;
   else
-    return 0;
+    return INTRODUCTION_PAGE;
 });
 
 final pageNameProvider = StateProvider<String?>((ref) {
   switch (ref.watch(bottomNavIndexProvider).state) {
-    case MAIN_PAGE : {
-      return MAIN_PAGE_NAME;
+    case PORTFOLIO_PAGE : {
+      return PORTFOLIO_PAGE_NAME;
+    }
+    case MARKET_PAGE : {
+      return MARKET_PAGE_NAME;
+    }
+    case MY_COMPANY_PAGE : {
+      return MY_COMPANY_PAGE_NAME;
+    }
+    case FEED_PAGE : {
+      return FEED_PAGE_NAME;
+    }
+    case FAQ_PAGE : {
+      return FAQ_PAGE_NAME;
     }
   }
 });

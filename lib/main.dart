@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tomks_fintech_hack/widgets/bottom_navigation_bar.dart';
+import 'package:tomks_fintech_hack/widgets/floating_action_button.dart';
 
 import 'app/top_level_providers.dart';
 
@@ -27,7 +29,6 @@ class MyNavigation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, watch) {
-
       return Scaffold(
         // appBar: AppBar(
         //   title: Text('${appBarName.state}'),
@@ -36,6 +37,9 @@ class MyNavigation extends ConsumerWidget {
         body: Center(
           child: Text('hello belig'),
         ),
+        floatingActionButton: MyFloatingActionButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: MyNavigationBar(),
       );
   }
 }
