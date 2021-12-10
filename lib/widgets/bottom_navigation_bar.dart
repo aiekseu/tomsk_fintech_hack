@@ -59,7 +59,6 @@ class MyNavigationBar extends ConsumerWidget {
       gapLocation: GapLocation.center,
       notchSmoothness: NotchSmoothness.sharpEdge,
       onTap: (index) {
-        print(index);
         bottomNavIndex.state = index;
       },
     );
