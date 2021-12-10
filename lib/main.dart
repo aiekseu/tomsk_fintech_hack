@@ -38,7 +38,7 @@ class MyNavigation extends ConsumerWidget {
   @override
   Widget build(BuildContext context, watch) {
 
-  final bottomNavIndex = watch.watch(bottomNavIndexProvider.state);
+  final bottomNavIndex = watch(bottomNavIndexProvider);
 
   // const int MY_COMPANY_PAGE = 0;
   // const int MARKET_PAGE = 1;

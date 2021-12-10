@@ -8,7 +8,7 @@ class MyFloatingActionButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, watch) {
-    final bottomNavIndex = watch.watch(bottomNavIndexProvider.state);
+    final bottomNavIndex = watch(bottomNavIndexProvider);
 
     return FloatingActionButton(
       child: Icon(Icons.person, size: 36,),

@@ -13,15 +13,15 @@ final userCompleteAuthenticationProvider = StateProvider((ref) => false);
 
 final bottomNavIndexProvider = StateProvider<int>((ref) {
 
-  if (!ref.watch(userCompleteAuthenticationProvider.state).state) return AUTH_PAGE;
-  if (ref.watch(userCompleteIntroductionProvider.state).state)
+  if (!ref.watch(userCompleteAuthenticationProvider).state) return AUTH_PAGE;
+  if (ref.watch(userCompleteIntroductionProvider).state)
     return PORTFOLIO_PAGE;
   else
     return INTRODUCTION_PAGE;
 });
 
 final pageNameProvider = StateProvider<String?>((ref) {
-  switch (ref.watch(bottomNavIndexProvider.state).state) {
+  switch (ref.watch(bottomNavIndexProvider).state) {
     case PORTFOLIO_PAGE : {
       return PORTFOLIO_PAGE_NAME;
     }

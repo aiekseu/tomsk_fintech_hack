@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   flutter_riverpod:
   animated_bottom_navigation_bar:
+  intl: ^0.17.0
 
 
   # The following adds the Cupertino Icons font to your application.
