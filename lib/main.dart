@@ -38,7 +38,7 @@ class MyNavigation extends ConsumerWidget {
   @override
   Widget build(BuildContext context, watch) {
 
-  final bottomNavIndex = watch(bottomNavIndexProvider);
+  final bottomNavIndex = watch.watch(bottomNavIndexProvider.state);
 
   // const int MY_COMPANY_PAGE = 0;
   // const int MARKET_PAGE = 1;
@@ -71,15 +71,22 @@ class MyNavigation extends ConsumerWidget {
         {
           return PortfolioPage();
         }
-      case SIGN_UP_PAGE:
-        {
-          return SignUpPage();
-        }
-      case AUTH_PAGE:
-        {
-          return AuthPage();
-        }
+      // case SIGN_UP_PAGE:
+      //   {
+      //     return SignUpPage();
+      //   }
+      // case AUTH_PAGE:
+      //   {
+      //     return AuthPage();
+      //   }
     }
+  }
+
+  if (bottomNavIndex.state == AUTH_PAGE){
+    return AuthPage();
+  }
+  if (bottomNavIndex.state == SIGN_UP_PAGE){
+    return SignUpPage();
   }
 
   return Scaffold(
