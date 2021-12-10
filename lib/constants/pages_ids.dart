@@ -1,0 +1,1 @@
+const int MAIN_PAGE = 0;
