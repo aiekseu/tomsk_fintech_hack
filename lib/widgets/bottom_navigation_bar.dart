@@ -16,10 +16,10 @@ class MyNavigationBar extends ConsumerWidget {
   ];
 
   final iconsText = <String>[
-    'Тесты',
-    'Чат',
-    'Гайды',
-    'Профиль',
+    'Бизнес',
+    'Рынок',
+    'Новости',
+    'FAQ',
   ];
 
   @override
@@ -59,6 +59,7 @@ class MyNavigationBar extends ConsumerWidget {
       gapLocation: GapLocation.center,
       notchSmoothness: NotchSmoothness.sharpEdge,
       onTap: (index) {
+        print(index);
         bottomNavIndex.state = index;
       },
     );

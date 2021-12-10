@@ -11,10 +11,7 @@ class MyFloatingActionButton extends ConsumerWidget {
     final bottomNavIndex = watch(bottomNavIndexProvider);
 
     return FloatingActionButton(
-      child: Text(
-        'eL',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-      ),
+      child: Icon(Icons.person, size: 36,),
       onPressed: () {
         bottomNavIndex.state = PORTFOLIO_PAGE;
       },
