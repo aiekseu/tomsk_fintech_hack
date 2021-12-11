@@ -1,5 +1,6 @@
 class Request {
   double minPayment;
+  String rating;
   double rate;
   String goal;
   int softCap;
@@ -11,5 +12,6 @@ class Request {
     required this.goal,
     required this.softCap,
     required this.hardCap,
+    required this.rating,
   });
 }
