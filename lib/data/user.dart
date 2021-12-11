@@ -18,7 +18,7 @@ class User {
       required this.passportSerial,
       required this.passportNum,
       required this.birthday,
-      this.isVerified = false}) {}
+      this.isVerified = false});
 
   setVerified() {
     this.isVerified = true;

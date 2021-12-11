@@ -11,6 +11,7 @@ final userPositionProvider = Provider((ref) => 'Android-разработчик')
 
 final userCompleteIntroductionProvider = StateProvider((ref) => false);
 final userCompleteAuthenticationProvider = StateProvider((ref) => false);
+final userVerifiedProvider = StateProvider((ref) => false);
 
 final bottomNavIndexProvider = StateProvider<int>((ref) {
   if (!ref.watch(userCompleteIntroductionProvider).state) return INTRODUCTION_PAGE;

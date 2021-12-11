@@ -14,6 +14,6 @@ class CompanyAccount {
         required this.revenue,
         required this.profit,
         required this.netProfit,
-        required this.debt}) {}
+        required this.debt});
 
 }

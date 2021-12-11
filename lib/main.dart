@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tomks_fintech_hack/app/authorization/auth_page.dart';
 import 'package:tomks_fintech_hack/app/faq/faq_page.dart';
@@ -38,17 +37,7 @@ class MyNavigation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, watch) {
-
   final bottomNavIndex = watch(bottomNavIndexProvider);
-
-  // const int MY_COMPANY_PAGE = 0;
-  // const int MARKET_PAGE = 1;
-  // const int FEED_PAGE = 2;
-  // const int FAQ_PAGE = 3;
-  // const int PORTFOLIO_PAGE = 4;
-  // const int SIGN_UP_PAGE = 5;
-  // const int AUTH_PAGE = 6;
-  // const int INTRODUCTION_PAGE = 7;
 
   Widget? _getBody() {
     switch (bottomNavIndex.state) {
