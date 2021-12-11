@@ -9,8 +9,8 @@ final userDateBirthProvider =
     Provider<DateTime>((ref) => DateTime(2000, 10, 14));
 final userPositionProvider = Provider((ref) => 'Android-разработчик');
 
-final userCompleteIntroductionProvider = StateProvider((ref) => false);
-final userCompleteAuthenticationProvider = StateProvider((ref) => false);
+final userCompleteIntroductionProvider = StateProvider((ref) => true);
+final userCompleteAuthenticationProvider = StateProvider((ref) => true);
 final userVerifiedProvider = StateProvider((ref) => false);
 
 final bottomNavIndexProvider = StateProvider<int>((ref) {

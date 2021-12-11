@@ -1,20 +1,20 @@
 class Request {
-  int companyId;
+  String companyName;
   double minPayment;
+  String rating;
   double rate;
   String goal;
-  String repaymentSchedule;
   int softCap;
   int hardCap;
-  int softEndDate;
-  int hardEndDate;
+  DateTime softEndDate;
+  DateTime hardEndDate;
 
   Request(
-      {required this.companyId,
+      {required this.companyName,
       required this.minPayment,
+      required this.rating,
       required this.rate,
       required this.goal,
-      required this.repaymentSchedule,
       required this.softCap,
       required this.hardCap,
       required this.softEndDate,

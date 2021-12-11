@@ -1,4 +1,5 @@
 class Company {
+  int id;
   String inn;
   String ogrn;
   String companyName;
@@ -11,7 +12,8 @@ class Company {
   String rating;
 
   Company(
-      {required this.inn,
+      {this.id = -1,
+      required this.inn,
       required this.ogrn,
       required this.companyName,
       required this.occupation,
