@@ -12,8 +12,8 @@ class IntroductionPage extends ConsumerWidget {
   PageDecoration _buildPageDecoration() {
     const boxDecoration = const BoxDecoration(
       gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
           colors: [
             Color(0xffB8A7FF),
             Color(0xff2196F3),
@@ -36,9 +36,7 @@ class IntroductionPage extends ConsumerWidget {
   }
 
   Widget _buildImage(String assetName, [double height = 300]) {
-    return Container(
-        child: Image.asset('images/$assetName', height: height)
-    );
+    return Container(child: Image.asset('images/$assetName', height: height));
   }
 
   @override
@@ -61,58 +59,109 @@ class IntroductionPage extends ConsumerWidget {
               pages: [
                 PageViewModel(
                     titleWidget: Text(
-                      "Добро пожаловать в\nLend Land!",
+                      "Добро пожаловать в\nLendLand!",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     bodyWidget: Text(
-                      "Ты вступаешь в ряды настоящих легионеров, но перед этим тебе нужно неплохо так подлутаться",
+                      "Вы отваживаетесь сделать шаг в мир инвестиций - мир, полный перспективных идей, новых возможностей и весомого профита",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     image: _buildImage('explore_circled.png'),
                     decoration: _buildPageDecoration()),
                 PageViewModel(
-                    title: "Выполняй миссии от нашего легиона",
-                    body:
-                    "Тебе будут назначаться задания, с которыми можешь справиться только ты",
-                    image: _buildImage('wallet.png'),
-                    decoration: _buildPageDecoration()),
-                PageViewModel(
-                    title: "Выполняй миссии от нашего легиона",
-                    body:
-                    "Тебе будут назначаться задания, с которыми можешь справиться только ты",
+                    titleWidget: Text(
+                      "Вы - инвестор?",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    bodyWidget: Text(
+                      "Многим бизнесам нужно финансирование для старта. инвестируйте в них, позвольте вашим деньгам работать на вас",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
                     image: _buildImage('savings.png'),
                     decoration: _buildPageDecoration()),
                 PageViewModel(
-                    title: "Выполняй миссии от нашего легиона",
-                    body:
-                        "Тебе будут назначаться задания, с которыми можешь справиться только ты",
-                    image: _buildImage('analyze.png'),
+                    titleWidget: Text(
+                      "Становитесь фигурой бизнеса",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    bodyWidget: Text(
+                      "Вы будете финансировать стартапы, бизнесы, проекты. Вы станете полноценным владельцем доли бизнеса",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    image: _buildImage('career_ladder.png'),
                     decoration: _buildPageDecoration()),
                 PageViewModel(
-                    title: "Миссия - это злодей. Одолей его!",
-                    body:
-                        "На каждом из этих заданий тебя ждет мини-монстр или баг, ты должен его одолеть!",
-                    image: _buildImage('growth.png'),
+                    titleWidget: Text(
+                      "Оценивайте свои шансы",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    bodyWidget: Text(
+                      "Вы будете использовать графики, чарты, цифры, чтобы предсказывать будущее!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    image: _buildImage('metrix.png'),
                     decoration: _buildPageDecoration()),
                 PageViewModel(
-                    title: "Не бойся, ты не один!",
-                    body:
-                        "Для решения задач тебе понадобится помощь твоих товарищей, так что вперед собирай команду!",
-                    image: _buildImage('instant_info.png'),
+                    titleWidget: Text(
+                      "Хотите продвигать свой бизнес?",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    bodyWidget: Text(
+                      "Регистрируйте свой магазин, организацию, компанию - познакомьте ваш бизнес с другими",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    image: _buildImage('business_shop.png'),
                     decoration: _buildPageDecoration()),
                 PageViewModel(
-                    title: "Доспехи - это твое все",
-                    body:
-                        "Победив монстра, вытащи все, что с него выпало, может пригодится)",
-                    image: _buildImage('plans.png'),
+                    titleWidget: Text(
+                      "Находите инвесторов",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    bodyWidget: Text(
+                      "Получайте финансирование от людей, готовых поднимать вашу дефтельность вместе",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+
+                    ),
+                    image: _buildImage('business_deal.png'),
                     decoration: _buildPageDecoration()),
                 PageViewModel(
-                    title: "Победи всех монстров\nи стань легионером!",
-                    body:
-                        "Как только ты получил свои доспехи, только тогда станешь полноценным членом легиона",
-                    image: _buildImage('progress_data.png'),
+                    titleWidget: Text(
+                      "Так выгоднее!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    bodyWidget: Text(
+                      "Вы получаете помощь с заинтересованных людей, принимающие риски. ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    image: _buildImage('discount.png'),
+                    decoration: _buildPageDecoration()),
+                PageViewModel(
+                    titleWidget: Text(
+                      "Есть идея, есть деньги - за дело!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    bodyWidget: Container(),
+                    // bodyWidget: Text(
+                    //   "Есть идея, есть деньги - пора работать!",
+                    //   textAlign: TextAlign.center,
+                    //   style: TextStyle(color: Colors.white, fontSize: 18),
+                    // ),
+                    image: _buildImage('powerful.png'),
                     decoration: _buildPageDecoration()),
               ],
               dotsFlex: 2,
