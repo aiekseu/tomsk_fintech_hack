@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tomks_fintech_hack/app/authorization/auth_page.dart';
 import 'package:tomks_fintech_hack/app/faq/faq_page.dart';
 import 'package:tomks_fintech_hack/app/feed/feed_page.dart';
+import 'package:tomks_fintech_hack/app/introduction/introduction_page.dart';
 import 'package:tomks_fintech_hack/app/market/market_page.dart';
 import 'package:tomks_fintech_hack/app/my_company/my_company_page.dart';
 import 'package:tomks_fintech_hack/app/portfolio/portfolio_page.dart';
@@ -82,6 +83,9 @@ class MyNavigation extends ConsumerWidget {
     }
   }
 
+  if (bottomNavIndex.state == INTRODUCTION_PAGE){
+    return IntroductionPage();
+  }
   if (bottomNavIndex.state == AUTH_PAGE){
     return AuthPage();
   }
