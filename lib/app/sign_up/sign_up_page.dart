@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:tomks_fintech_hack/app/sign_up/sign_up_provider.dart';
@@ -19,6 +21,7 @@ class SignUpPage extends ConsumerWidget {
     final birthday = watch(birthdayProvider);
     final phoneNumber = watch(phoneNumberProvider);
     final password = watch(passwordProvider);
+    final repeatPassword = watch(repeatPasswordProvider);
 
     TextEditingController dateinput = TextEditingController();
     dateinput.text = "";
@@ -32,7 +35,7 @@ class SignUpPage extends ConsumerWidget {
               // mainAxisAlignment: MainAxisAlignment.center,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 60),
+                SizedBox(height: 40),
                 Center(
                   child: Text(
                     "Добрый день!",
@@ -45,7 +48,8 @@ class SignUpPage extends ConsumerWidget {
                   child: TextField(
                     obscureText: false,
                     decoration: InputDecoration(
-                      focusColor: Colors.red,
+                      fillColor: Color(0xffE3F2FD),
+                      filled: true,
                       border: OutlineInputBorder(),
                       labelText: 'ФИО',
                     ),
@@ -61,7 +65,8 @@ class SignUpPage extends ConsumerWidget {
                     child: TextField(
                       controller: dateinput,
                       decoration: InputDecoration(
-                        // icon: Icon(Icons.calendar_today),
+                        fillColor: Color(0xffE3F2FD),
+                        filled: true,
                         border: OutlineInputBorder(),
                         labelText: 'Дата рождения',
                       ),
@@ -87,9 +92,15 @@ class SignUpPage extends ConsumerWidget {
                   child: TextField(
                     obscureText: false,
                     decoration: InputDecoration(
+                      fillColor: Color(0xffE3F2FD),
+                      filled: true,
                       border: OutlineInputBorder(),
                       labelText: 'Телефон',
                     ),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      MaskedInputFormatter('+#-###-###-####')
+                    ],
                     onChanged: (text) {
                       phoneNumber.state = text;
                     },
@@ -101,11 +112,30 @@ class SignUpPage extends ConsumerWidget {
                   child: TextField(
                     obscureText: true,
                     decoration: InputDecoration(
+                      fillColor: Color(0xffE3F2FD),
+                      filled: true,
                       border: OutlineInputBorder(),
                       labelText: 'Пароль',
                     ),
                     onChanged: (text) {
                       password.state = text;
+                    },
+                  ),
+                ),
+
+                SizedBox(height: 20),
+                Container(
+                  height: 40,
+                  child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      fillColor: Color(0xffE3F2FD),
+                      filled: true,
+                      border: OutlineInputBorder(),
+                      labelText: 'Повторите пароль',
+                    ),
+                    onChanged: (text) {
+                      repeatPassword.state = text;
                     },
                   ),
                 ),

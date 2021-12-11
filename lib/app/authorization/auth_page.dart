@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tomks_fintech_hack/app/top_level_providers.dart';
 import 'package:tomks_fintech_hack/constants/pages_ids.dart';
@@ -42,9 +43,15 @@ class AuthPage extends ConsumerWidget {
                 child: TextField(
                   obscureText: false,
                   decoration: InputDecoration(
+                    fillColor: Color(0xffE3F2FD),
+                    filled: true,
                     border: OutlineInputBorder(),
                     labelText: 'Телефон',
                   ),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    MaskedInputFormatter('+#-###-###-####')
+                  ],
                   onChanged: (text) {
                     phoneNumber.state = text;
                   },
@@ -56,6 +63,8 @@ class AuthPage extends ConsumerWidget {
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
+                    fillColor: Color(0xffE3F2FD),
+                    filled: true,
                     border: OutlineInputBorder(),
                     labelText: 'Пароль',
                   ),
@@ -65,6 +74,7 @@ class AuthPage extends ConsumerWidget {
                 ),
               ),
               SizedBox(height: 40),
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     textStyle:
@@ -72,7 +82,7 @@ class AuthPage extends ConsumerWidget {
                     minimumSize: Size.fromHeight(60)),
                 child: Text("авторизация"),
                 onPressed: () {
-                  if (phoneNumber.state == "1234" && password.state == "1234") {
+                  if (phoneNumber.state == "+7-777-777-7777" && password.state == "1234") {
                     userAuthenticated.state = true;
                   }
                 },
@@ -81,7 +91,7 @@ class AuthPage extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("авторизаться через", style: TextStyle(fontSize: 16)),
+                  Text("авторизация через", style: TextStyle(fontSize: 16)),
                   SizedBox(
                     width: 120,
                     child: Row(
