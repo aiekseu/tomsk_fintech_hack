@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tomks_fintech_hack/app/market/widgets/filters.dart';
 import 'package:tomks_fintech_hack/app/market/market_provider.dart';
+import 'package:tomks_fintech_hack/app/market/widgets/table_header.dart';
 
 class MarketPage extends ConsumerWidget {
   const MarketPage({
@@ -15,12 +16,25 @@ class MarketPage extends ConsumerWidget {
     final pressedButton = watch(pressedButtonProvider);
     final searchCompany = watch(searchCompanyProvider);
 
-    final roundedRectangleBorder = RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15), // <-- Radius
-    );
 
     _buildTextStyle({size = 14.0}) {
       return TextStyle(fontSize: size);
+    }
+
+    _countPercentage(x, y){
+      return (x/y*100).round();
+    }
+
+    _getColor(x, y){
+      var color = Color(0xffBBFBC1);
+      var per = _countPercentage(x, y);
+      if (per < 90){
+        color = Color(0xffffff99);
+      }
+      if (per < 60){
+        color = Color(0xffffcc99);
+      }
+      return color;
     }
 
     return SafeArea(
@@ -62,51 +76,9 @@ class MarketPage extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       if (index == 0) {
                         // return the header
-                        return Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color.fromRGBO(13, 71, 161, 0.15),
-                                  //color of shadow
-                                  blurRadius: 15,
-                                  // blur radius
-                                  offset:
-                                  Offset(-2, 2), // changes position of shadow
-                                ),
-                              ],
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15))),
-                          child: new Row(
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Text("компания", style: _buildTextStyle()),
-                              ),
-                              Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "рейтинг",
-                                    style: _buildTextStyle(),
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "собрано",
-                                    style: _buildTextStyle(),
-                                  )),
-                              Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    "ставка",
-                                    style: _buildTextStyle(),
-                                  )),
-                            ],
-                          ),
-                        );
+                        return TableHeader();
                       }
+
                       index -= 1;
 
                       if (pressedButton.state == CATEGORY_UP) {
@@ -133,8 +105,6 @@ class MarketPage extends ConsumerWidget {
                       if (pressedButton.state == RATE_DOWN) {
                         data.sort((req1, req2) => req1.rate.compareTo(req2.rate));
                       }
-
-
 
                       return Container(
                         height: 50,
@@ -184,20 +154,33 @@ class MarketPage extends ConsumerWidget {
                                   flex: 1,
                                   child: Text(
                                     data[index].rating,
+                                    textAlign: TextAlign.center,
                                     style: _buildTextStyle(),
                                   ),
                                 ),
                                 Expanded(
                                   flex: 1,
-                                  child: Text(
-                                    data[index].minPayment.toString(),
-                                    style: _buildTextStyle(),
+                                  child: Container(
+                                    margin: EdgeInsets.only(left: 5, right: 5 ),
+                                    padding: EdgeInsets.only(top: 2, bottom: 2),
+                                    decoration: BoxDecoration(
+                                      color: _getColor(data[index].accumulatedSum,data[index].softCap)
+                                    ),
+                                    child: Text(
+                                        '${_countPercentage(data[index].accumulatedSum,data[index].softCap)}%',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 14,
+
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Expanded(
                                   flex: 1,
                                   child: Text(
                                     '${data[index].rate.toString()}%',
+                                    textAlign: TextAlign.center,
                                     style: _buildTextStyle(),
                                   ),
                                 ),

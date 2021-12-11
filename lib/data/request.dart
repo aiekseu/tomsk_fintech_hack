@@ -6,6 +6,7 @@ class Request {
   String goal;
   int softCap;
   int hardCap;
+  int accumulatedSum;
   DateTime softEndDate;
   DateTime hardEndDate;
 
@@ -17,6 +18,7 @@ class Request {
       required this.goal,
       required this.softCap,
       required this.hardCap,
+      required this.accumulatedSum,
       required this.softEndDate,
       required this.hardEndDate});
 }

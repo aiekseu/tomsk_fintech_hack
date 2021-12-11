@@ -94,6 +94,7 @@ final requestsProvider = FutureProvider((ref) async {
         goal: 'на проект',
         softCap: 900000,
         hardCap: 1000000,
+        accumulatedSum: 1000,
         softEndDate: DateTime(2021, 12),
         hardEndDate: DateTime(2022, 2)),
     Request(
@@ -104,6 +105,7 @@ final requestsProvider = FutureProvider((ref) async {
         goal: 'На сайт',
         softCap: 900000,
         hardCap: 1000000,
+        accumulatedSum: 500000,
         softEndDate: DateTime(2021, 12),
         hardEndDate: DateTime(2022, 2)),
     Request(
@@ -114,6 +116,7 @@ final requestsProvider = FutureProvider((ref) async {
         goal: 'На сайт',
         softCap: 900000,
         hardCap: 1000000,
+        accumulatedSum: 870000,
         softEndDate: DateTime(2021, 12),
         hardEndDate: DateTime(2022, 2)),
     // Request(
