@@ -1,36 +1,39 @@
 class Company {
   String inn;
   String ogrn;
-  String companyName;
+  String name;
   String occupation;
   String description;
   String address;
   DateTime registrationDate;
   String website;
-  String photo;
-  String rating;
+  // String photo;
+  // String rating;
 
   Company(
       {required this.inn,
       required this.ogrn,
-      required this.companyName,
+      required this.name,
       required this.occupation,
       required this.description,
       required this.address,
       required this.registrationDate,
       required this.website,
-      required this.photo,
-      required this.rating});
+      // required this.photo,
+      // required this.rating
+      });
 }
 
 final FAKE_COMPANY = new Company(
     inn: '666666666',
     ogrn: '666666666',
-    companyName: 'КриптоЗайм',
+    name: 'КриптоЗайм',
     occupation: "Микрозаймы",
     description: "Микрозаймы в криптовалюте",
     address: "г. Томск, бизнес инкубатор Дружба",
     registrationDate: DateTime(2000, 10, 14),
     website: "2ch.hk",
-    photo: "photo",
-    rating: 'AA');
+    // photo: "photo",
+    // rating: 'AA'
+);
+

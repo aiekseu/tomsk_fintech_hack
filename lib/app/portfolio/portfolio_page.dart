@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../top_level_providers.dart';
-import 'portfolio_provider.dart';
 
 class PortfolioPage extends ConsumerWidget {
   const PortfolioPage({Key? key}) : super(key: key);
@@ -22,6 +21,9 @@ class PortfolioPage extends ConsumerWidget {
           height: 80,
           child: Card(
             color: Colors.blueAccent[100],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
             child: Center(
               child: Row(
                 children: [
@@ -72,6 +74,7 @@ class PortfolioPage extends ConsumerWidget {
                 )
               ],
             ),
+            SizedBox(height: 8,),
             _isVerifyed(),
           ],
         ),
