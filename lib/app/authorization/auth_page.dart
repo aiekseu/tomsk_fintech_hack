@@ -27,8 +27,8 @@ class AuthPage extends ConsumerWidget {
         // borderRadius: BorderRadius.circular(30), //border corner radius
         boxShadow: [
           BoxShadow(
-            color: Color.fromRGBO(13, 71, 161, 0.12), //color of shadow
-            blurRadius: 20, // blur radius
+            color: Color.fromRGBO(13, 71, 161, 0.15), //color of shadow
+            blurRadius: 15, // blur radius
             offset: Offset(-2, 2), // changes position of shadow
           ),
         ],
