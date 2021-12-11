@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:tomks_fintech_hack/app/my_company/add_request_page.dart';
 import 'package:tomks_fintech_hack/app/my_company/my_company_provider.dart';
 import 'package:tomks_fintech_hack/app/my_company/add_company_page.dart';
+import 'package:tomks_fintech_hack/app/my_company/widgets/request_card.dart';
 
 class MyCompanyPage extends ConsumerWidget {
   const MyCompanyPage({
@@ -164,57 +166,21 @@ class MyCompanyPage extends ConsumerWidget {
                 child: Text("Создать сбор средств"),
                 onPressed: isVerified.state
                     ? () async {
-                        requestsList.state.add(await Navigator.push(
+                        var tempRequest = await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AddRequestPage()),
-                        ));
+                            builder: (context) => AddRequestPage(),
+                          ),
+                        );
+                        requestsList.state.add(tempRequest);
                       }
                     : null),
             Expanded(
               child: ListView.builder(
-                padding: EdgeInsets.only(top: 8),
                 itemCount: requestsList.state.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SizedBox(
-                    height: 160,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 4,
-                      color: Color(0xffe2edfa),
-                      child: GridView.count(
-                        primary: false,
-                        padding: EdgeInsets.all(12),
-                        crossAxisCount: 3,
-                        children: [
-                          SizedBox(
-                            height: 70,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('долг', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                Text('${requestsList.state[index]?.softCap ?? '-'}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                Text('погасить', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, decoration: TextDecoration.underline, color: Color(0xff0D47A1)),),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 70,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('долг', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                Text('${requestsList.state[index]?.softCap ?? '-'}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                                Text('погасить', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, decoration: TextDecoration.underline, color: Color(0xff0D47A1)),),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
+                padding: EdgeInsets.only(top: 12),
+                itemBuilder: (context, index) {
+                  return RequestCard(index: index);
                 },
               ),
             ),

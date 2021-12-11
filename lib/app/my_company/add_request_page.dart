@@ -109,7 +109,7 @@ class AddRequestPage extends ConsumerWidget {
               },
             ),
             SizedBox(
-              height: 120,
+              height: 0,
             ),
             Image.asset('images/jewish.jpeg'),
           ],
