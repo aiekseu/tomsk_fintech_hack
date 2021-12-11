@@ -12,7 +12,6 @@ class AddCompanyPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, watch) {
-
     final name = TextEditingController();
     final INN = TextEditingController();
     final OGRN = TextEditingController();
@@ -21,6 +20,7 @@ class AddCompanyPage extends ConsumerWidget {
     final regDate = TextEditingController();
     final site = TextEditingController();
     final desc = TextEditingController();
+    final rating = TextEditingController();
 
     return Scaffold(
       body: SafeArea(
@@ -41,10 +41,12 @@ class AddCompanyPage extends ConsumerWidget {
                       INN.text = '1234567890';
                       OGRN.text = '1234567890';
                       occupation.text = 'Инвестиции';
-                      address.text = '634034, г. Томск, ул. Красноармейская 157, БИ "Дружба"';
+                      address.text =
+                          '634034, г. Томск, ул. Красноармейская 157, БИ "Дружба"';
                       regDate.text = DateTime.now().toString();
                       site.text = '2ch.hk';
                       desc.text = 'Не скам';
+                      rating.text = 'AAA';
                     },
                     icon: Icon(Icons.add))
               ],
@@ -52,30 +54,75 @@ class AddCompanyPage extends ConsumerWidget {
             SizedBox(
               height: 16,
             ),
-            InputWithLabel(label: 'Название', stateProvider: companyNameProvider, controller: name,),
-            InputWithLabel(label: 'ИНН', stateProvider: companyINNProvider, controller: INN,),
-            InputWithLabel(label: 'ОГРН', stateProvider: companyOGRNProvider, controller: OGRN,),
             InputWithLabel(
-                label: 'Деятельность', stateProvider: companyOccupationProvider, controller: occupation,),
-            InputWithLabel(label: 'Юр. адрес', stateProvider: companyAddressProvider, controller: address,),
+              label: 'Название',
+              stateProvider: companyNameProvider,
+              controller: name,
+            ),
             InputWithLabel(
-                label: 'Дата регистрации компании',
-                stateProvider: companyRegDateProvider, controller: regDate,),
+              label: 'ИНН',
+              stateProvider: companyINNProvider,
+              controller: INN,
+            ),
             InputWithLabel(
-                label: 'Сайт компании', stateProvider: companySiteProvider, controller: site,),
+              label: 'ОГРН',
+              stateProvider: companyOGRNProvider,
+              controller: OGRN,
+            ),
             InputWithLabel(
-                label: 'Описание компании', stateProvider: companyDescProvider, controller: desc,),
+              label: 'Деятельность',
+              stateProvider: companyOccupationProvider,
+              controller: occupation,
+            ),
+            InputWithLabel(
+              label: 'Юр. адрес',
+              stateProvider: companyAddressProvider,
+              controller: address,
+            ),
+            InputWithLabel(
+              label: 'Дата регистрации компании',
+              stateProvider: companyRegDateProvider,
+              controller: regDate,
+            ),
+            InputWithLabel(
+              label: 'Сайт компании',
+              stateProvider: companySiteProvider,
+              controller: site,
+            ),
+            InputWithLabel(
+              label: 'Описание компании',
+              stateProvider: companyDescProvider,
+              controller: desc,
+            ),
+            InputWithLabel(
+              label: 'Рейтинг',
+              stateProvider: companyRatingProvider,
+              controller: rating,
+            ),
+            SizedBox(height: 22,),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                textStyle:
-                    TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 minimumSize: Size.fromHeight(60),
               ),
               child: Text("Создать компанию"),
               onPressed: () async {
-                Navigator.pop(context, new Company(inn: INN.text, ogrn: OGRN.text, name: name.text, occupation: occupation.text, description: desc.text, address: address.text, registrationDate: DateTime.parse(regDate.text), website: site.text));
+                Navigator.pop(
+                  context,
+                  new Company(
+                      inn: INN.text,
+                      ogrn: OGRN.text,
+                      name: name.text,
+                      rating: rating.text,
+                      occupation: occupation.text,
+                      description: desc.text,
+                      address: address.text,
+                      registrationDate: DateTime.parse(regDate.text),
+                      website: site.text),
+                );
               },
             ),
+            SizedBox(height: 22,),
           ],
         ),
       ),

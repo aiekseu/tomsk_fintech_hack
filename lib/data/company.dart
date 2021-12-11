@@ -9,7 +9,7 @@ class Company {
   DateTime registrationDate;
   String website;
   // String photo;
-  // String rating;
+  String rating;
 
   Company(
       {this.id = -1,
@@ -22,20 +22,6 @@ class Company {
       required this.registrationDate,
       required this.website,
       // required this.photo,
-      // required this.rating
+      required this.rating
       });
 }
-
-final FAKE_COMPANY = new Company(
-    inn: '666666666',
-    ogrn: '666666666',
-    name: 'КриптоЗайм',
-    occupation: "Микрозаймы",
-    description: "Микрозаймы в криптовалюте",
-    address: "г. Томск, бизнес инкубатор Дружба",
-    registrationDate: DateTime(2000, 10, 14),
-    website: "2ch.hk",
-    // photo: "photo",
-    // rating: 'AA'
-);
-

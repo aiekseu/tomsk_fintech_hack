@@ -17,6 +17,8 @@ class AddRequestPage extends ConsumerWidget {
     final rate = TextEditingController();
     final softCap = TextEditingController();
     final hardCap = TextEditingController();
+    final softCapDate = TextEditingController();
+    final hardCapDate = TextEditingController();
 
     return Scaffold(
       body: SafeArea(
@@ -38,6 +40,8 @@ class AddRequestPage extends ConsumerWidget {
                       rate.text = '10';
                       softCap.text = '500000';
                       hardCap.text = "1000000";
+                      softCapDate.text = DateTime(2022, 1, 1).toString();
+                      hardCapDate.text = DateTime(2022, 2, 1).toString();
                     },
                     icon: Icon(Icons.add))
               ],
@@ -70,7 +74,19 @@ class AddRequestPage extends ConsumerWidget {
               stateProvider: requestHardCapProvider,
               controller: hardCap,
             ),
-            SizedBox(height: 30,),
+            InputWithLabel(
+              label: 'Дата окончания сбора Soft Cap',
+              stateProvider: requestHardCapProvider,
+              controller: softCapDate,
+            ),
+            InputWithLabel(
+              label: 'Дата окончания сбора Hard Cap',
+              stateProvider: requestHardCapProvider,
+              controller: hardCapDate,
+            ),
+            SizedBox(
+              height: 30,
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -79,16 +95,22 @@ class AddRequestPage extends ConsumerWidget {
               child: Text("Начать сбор средств"),
               onPressed: () async {
                 Navigator.pop(
-                    context,
-                    new Request(
-                        minPayment: double.parse(softCap.text),
-                        rate: double.parse(rate.text),
-                        goal: goal.text,
-                        softCap: int.parse(softCap.text),
-                        hardCap: int.parse(hardCap.text)));
+                  context,
+                  new Request(
+                    minPayment: double.parse(softCap.text),
+                    rate: double.parse(rate.text),
+                    goal: goal.text,
+                    softCap: int.parse(softCap.text),
+                    softEndDate: DateTime.parse(softCapDate.text),
+                    hardCap: int.parse(hardCap.text),
+                    hardEndDate: DateTime.parse(hardCapDate.text),
+                  ),
+                );
               },
             ),
-            SizedBox(height: 120,),
+            SizedBox(
+              height: 120,
+            ),
             Image.asset('images/jewish.jpeg'),
           ],
         ),

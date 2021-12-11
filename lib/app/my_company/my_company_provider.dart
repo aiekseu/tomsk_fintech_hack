@@ -12,6 +12,7 @@ final companyAddressProvider = StateProvider<String?>((ref) => '');
 final companyRegDateProvider = StateProvider<String?>((ref) => '');
 final companySiteProvider = StateProvider<String?>((ref) => '');
 final companyDescProvider = StateProvider<String?>((ref) => '');
+final companyRatingProvider = StateProvider<String?>((ref) => '');
 
 final companyIsVerifiedProvider = StateProvider<bool>((ref) => false);
 
@@ -20,5 +21,7 @@ final requestMinPaymentProvider = StateProvider<String?>((ref) => '');
 final requestRateProvider = StateProvider<String?>((ref) => '');
 final requestSoftCapProvider = StateProvider<String?>((ref) => '');
 final requestHardCapProvider = StateProvider<String?>((ref) => '');
+final requestSoftCapDateProvider = StateProvider<String?>((ref) => '');
+final requestHardCapDateProvider = StateProvider<String?>((ref) => '');
 
 final requestsProvider = StateProvider<List<Request?>>((ref) => []);
