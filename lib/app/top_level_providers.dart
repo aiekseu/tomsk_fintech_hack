@@ -16,7 +16,7 @@ final userVerifiedProvider = StateProvider((ref) => false);
 final bottomNavIndexProvider = StateProvider<int>((ref) {
   if (!ref.watch(userCompleteIntroductionProvider).state) return INTRODUCTION_PAGE;
   if (!ref.watch(userCompleteAuthenticationProvider).state) return AUTH_PAGE;
-  return PORTFOLIO_PAGE;
+  return MARKET_PAGE;
 });
 
 final pageNameProvider = StateProvider<String?>((ref) {

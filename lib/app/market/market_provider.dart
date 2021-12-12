@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tomks_fintech_hack/data/company.dart';
 import 'package:tomks_fintech_hack/data/request.dart';
+import 'package:http/http.dart' as http;
+import 'package:tomks_fintech_hack/data/request_cash_flow.dart';
 
 final CATEGORY_UP = 'category_up';
 final CATEGORY_DOWN = 'category_down';
@@ -18,6 +20,18 @@ final pressedButtonProvider = StateProvider<String>((ref) => CATEGORY_UP);
 
 final searchCompanyProvider = StateProvider<String>((ref) => "");
 
+final requestsCashFlowProvider = FutureProvider<List<RequestCashFlow>>((ref) async {
+  final requestCashFlow = await http.get(Uri.parse('https://fintech-hack2.herokuapp.com/api/request_cash_flow/'));
+  final _requestCashFlowList = <RequestCashFlow>[];
+  if(requestCashFlow.statusCode == 200) {
+    for (var i =0; i< jsonDecode(utf8.decode(requestCashFlow.bodyBytes)).length; i++){
+      _requestCashFlowList.add(RequestCashFlow.fromJson(jsonDecode(utf8.decode(requestCashFlow.bodyBytes))[i]));
+    }
+  } else {
+    throw Exception('Failed to load requests');
+  }
+  return _requestCashFlowList;
+});
 
 final requestsProvider = FutureProvider<List<Request>>((ref) async {
   // final fakeRequests = [
@@ -58,16 +72,28 @@ final requestsProvider = FutureProvider<List<Request>>((ref) async {
   // ];
   // return Future.delayed(Duration(seconds: 2)).then((value) => fakeRequests);
 
-  final _requestList = <Request>[];
-  // final response = await http.get(Uri.parse('https://fintech-hack2.herokuapp.com/api/requests/'));
+  final requestCashFlow = await http.get(Uri.parse('https://fintech-hack2.herokuapp.com/api/request_cash_flow/'));
+  final _requestCashFlowList = <RequestCashFlow>[];
+  if(requestCashFlow.statusCode == 200) {
+    for (var i =0; i< jsonDecode(utf8.decode(requestCashFlow.bodyBytes)).length; i++){
+      _requestCashFlowList.add(RequestCashFlow.fromJson(jsonDecode(utf8.decode(requestCashFlow.bodyBytes))[i]));
+    }
+  } else {
+    throw Exception('Failed to load requests');
+  }
 
-  // if(response.statusCode == 200) {
-  //   for (var i =0; i< jsonDecode(utf8.decode(response.bodyBytes)).length; i++){
-  //     _requestList.add(Request.fromJson(jsonDecode(utf8.decode(response.bodyBytes))[i]));
-  //   }
-  // } else {
-  //   throw Exception('Failed to load requests');
-  // }
+  final _requestList = <Request>[];
+  final response = await http.get(Uri.parse('https://fintech-hack2.herokuapp.com/api/requests/'));
+
+  if(response.statusCode == 200) {
+    for (var i =0; i< jsonDecode(utf8.decode(response.bodyBytes)).length; i++){
+      _requestList.add(Request.fromJson(jsonDecode(utf8.decode(response.bodyBytes))[i], _requestCashFlowList));
+    }
+  } else {
+    throw Exception('Failed to load requests');
+  }
+
+
 
   return _requestList;
 });
