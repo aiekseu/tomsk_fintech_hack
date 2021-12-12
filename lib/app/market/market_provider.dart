@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tomks_fintech_hack/data/company.dart';
 import 'package:tomks_fintech_hack/data/request.dart';
@@ -18,41 +20,54 @@ final searchCompanyProvider = StateProvider<String>((ref) => "");
 
 
 final requestsProvider = FutureProvider<List<Request>>((ref) async {
-  final fakeRequests = [
-    Request(
-        companyName:"ООО Амбит",
-        minPayment: 1000,
-        rating: "CCC",
-        rate: 12.4,
-        goal: 'на проект',
-        softCap: 900000,
-        hardCap: 1000000,
-        accumulatedSum: 1000,
-        softEndDate: DateTime(2021, 12),
-        hardEndDate: DateTime(2022, 2)),
-    Request(
-        companyName: "ZENNEX",
-        minPayment: 1000,
-        rating: "AAA",
-        rate: 13.7,
-        goal: 'На сайт',
-        softCap: 900000,
-        hardCap: 1000000,
-        accumulatedSum: 500000,
-        softEndDate: DateTime(2021, 12),
-        hardEndDate: DateTime(2022, 2)),
-    Request(
-        companyName: "АО ГАРАНТ",
-        minPayment: 1000,
-        rating: "BBB",
-        rate: 23.7,
-        goal: 'На сайт',
-        softCap: 900000,
-        hardCap: 1000000,
-        accumulatedSum: 870000,
-        softEndDate: DateTime(2021, 12),
-        hardEndDate: DateTime(2022, 2)),
+  // final fakeRequests = [
+  //   Request(
+  //       companyName:"ООО Амбит",
+  //       minPayment: 1000,
+  //       rating: "CCC",
+  //       rate: 12.4,
+  //       goal: 'на проект',
+  //       softCap: 900000,
+  //       hardCap: 1000000,
+  //       accumulatedSum: 1000,
+  //       softEndDate: DateTime(2021, 12),
+  //       hardEndDate: DateTime(2022, 2)),
+  //   Request(
+  //       companyName: "ZENNEX",
+  //       minPayment: 1000,
+  //       rating: "AAA",
+  //       rate: 13.7,
+  //       goal: 'На сайт',
+  //       softCap: 900000,
+  //       hardCap: 1000000,
+  //       accumulatedSum: 500000,
+  //       softEndDate: DateTime(2021, 12),
+  //       hardEndDate: DateTime(2022, 2)),
+  //   Request(
+  //       companyName: "АО ГАРАНТ",
+  //       minPayment: 1000,
+  //       rating: "BBB",
+  //       rate: 23.7,
+  //       goal: 'На сайт',
+  //       softCap: 900000,
+  //       hardCap: 1000000,
+  //       accumulatedSum: 870000,
+  //       softEndDate: DateTime(2021, 12),
+  //       hardEndDate: DateTime(2022, 2)),
+  //
+  // ];
+  // return Future.delayed(Duration(seconds: 2)).then((value) => fakeRequests);
 
-  ];
-  return Future.delayed(Duration(seconds: 2)).then((value) => fakeRequests);
+  final _requestList = <Request>[];
+  // final response = await http.get(Uri.parse('https://fintech-hack2.herokuapp.com/api/requests/'));
+
+  // if(response.statusCode == 200) {
+  //   for (var i =0; i< jsonDecode(utf8.decode(response.bodyBytes)).length; i++){
+  //     _requestList.add(Request.fromJson(jsonDecode(utf8.decode(response.bodyBytes))[i]));
+  //   }
+  // } else {
+  //   throw Exception('Failed to load requests');
+  // }
+
+  return _requestList;
 });
