@@ -14,6 +14,7 @@ class Request {
   int accumulatedSum;
   DateTime softEndDate;
   DateTime hardEndDate;
+  String photo;
 
   Request(
       {this.id = 0,
@@ -26,7 +27,9 @@ class Request {
       required this.hardCap,
       this.accumulatedSum = 0,
       required this.softEndDate,
-      required this.hardEndDate});
+      required this.hardEndDate,
+      this.photo = "mem_photo.png"
+      });
 
   static Request fromJson(
       Map<String, dynamic> json, List<RequestCashFlow> requestCashFlowList) {
@@ -39,6 +42,22 @@ class Request {
       accumulatedSum += element.sum;
     });
 
+    var company_id = json['company'].cast<Map, dynamic>()['id'];
+    var company_photo = null;
+    switch (company_id){
+      case 1:
+        company_photo = "ambit_photo.png";
+        break;
+      case 2:
+        company_photo = "zennex_photo.png";
+        break;
+      case 3:
+        company_photo = "garrant_photo.jpg";
+        break;
+      default:
+        company_photo = "candle_photo.png";
+    }
+
     return Request(
       companyName: json['company'].cast<Map, dynamic>()['name'],
       minPayment: json['min_payment'],
@@ -50,6 +69,7 @@ class Request {
       accumulatedSum: accumulatedSum,
       softEndDate: DateTime.now(),
       hardEndDate: DateTime.now(),
+      photo: company_photo,
     );
   }
 }

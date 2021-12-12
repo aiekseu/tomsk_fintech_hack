@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tomks_fintech_hack/app/market/widgets/filters.dart';
 import 'package:tomks_fintech_hack/app/market/market_provider.dart';
 import 'package:tomks_fintech_hack/app/market/widgets/table_header.dart';
+import 'package:tomks_fintech_hack/app/top_level_providers.dart';
+import 'package:tomks_fintech_hack/constants/pages_ids.dart';
 
 class MarketPage extends ConsumerWidget {
   const MarketPage({
@@ -15,6 +17,9 @@ class MarketPage extends ConsumerWidget {
     final requestList = watch(requestsProvider);
     final pressedButton = watch(pressedButtonProvider);
     final searchCompany = watch(searchCompanyProvider);
+    final chosenRequest = watch(chosenRequestProvider);
+    final bottomNavIndex = watch(bottomNavIndexProvider);
+
 
 
     _buildTextStyle({size = 14.0}) {
@@ -106,94 +111,100 @@ class MarketPage extends ConsumerWidget {
                         data.sort((req1, req2) => req1.rate.compareTo(req2.rate));
                       }
 
-                      return Container(
-                        height: 50,
-                        margin: EdgeInsets.all(0),
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: index == data.length - 1
-                                    ? Color.fromRGBO(13, 71, 161, 0.15)
-                                    : Colors.white,
-                                //color of shadow
-                                blurRadius: 15,
-                                // blur radius
-                                offset: index == data.length - 1
-                                    ? Offset(-2, 20)
-                                    : Offset(0, 0), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: index == data.length - 1
-                                ? BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                bottomRight: Radius.circular(15))
-                                : BorderRadius.zero),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.supervised_user_circle),
-                                      Padding(
-                                          padding: EdgeInsets.only(right: 10)),
-                                      Text(
-                                        data[index].companyName,
-                                        style: _buildTextStyle(),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    data[index].rating,
-                                    textAlign: TextAlign.center,
-                                    style: _buildTextStyle(),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    margin: EdgeInsets.only(left: 5, right: 5 ),
-                                    padding: EdgeInsets.only(top: 2, bottom: 2),
-                                    decoration: BoxDecoration(
-                                      color: _getColor(data[index].accumulatedSum,data[index].softCap)
-                                    ),
-                                    child: Text(
-                                        '${_countPercentage(data[index].accumulatedSum,data[index].softCap)}%',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 14,
-
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    '${data[index].rate.toString()}%',
-                                    textAlign: TextAlign.center,
-                                    style: _buildTextStyle(),
-                                  ),
+                      return GestureDetector(
+                        onTap: (){
+                          chosenRequest.state = data[index];
+                          bottomNavIndex.state = REQUEST_PAGE;
+                        },
+                        child: Container(
+                          height: 50,
+                          margin: EdgeInsets.all(0),
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: index == data.length - 1
+                                      ? Color.fromRGBO(13, 71, 161, 0.15)
+                                      : Colors.white,
+                                  //color of shadow
+                                  blurRadius: 15,
+                                  // blur radius
+                                  offset: index == data.length - 1
+                                      ? Offset(-2, 20)
+                                      : Offset(0, 0), // changes position of shadow
                                 ),
                               ],
-                            ),
-                            const Divider(
-                              height: 1,
-                              thickness: 0.5,
-                              indent: 0,
-                              endIndent: 0,
-                              color: Colors.black,
-                            ),
-                          ],
+                              borderRadius: index == data.length - 1
+                                  ? BorderRadius.only(
+                                  bottomLeft: Radius.circular(15),
+                                  bottomRight: Radius.circular(15))
+                                  : BorderRadius.zero),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.supervised_user_circle),
+                                        Padding(
+                                            padding: EdgeInsets.only(right: 10)),
+                                        Text(
+                                          data[index].companyName,
+                                          style: _buildTextStyle(),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      data[index].rating,
+                                      textAlign: TextAlign.center,
+                                      style: _buildTextStyle(),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      margin: EdgeInsets.only(left: 5, right: 5 ),
+                                      padding: EdgeInsets.only(top: 2, bottom: 2),
+                                      decoration: BoxDecoration(
+                                        color: _getColor(data[index].accumulatedSum,data[index].softCap)
+                                      ),
+                                      child: Text(
+                                          '${_countPercentage(data[index].accumulatedSum,data[index].softCap)}%',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 14,
+
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Text(
+                                      '${data[index].rate.toString()}%',
+                                      textAlign: TextAlign.center,
+                                      style: _buildTextStyle(),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Divider(
+                                height: 1,
+                                thickness: 0.5,
+                                indent: 0,
+                                endIndent: 0,
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

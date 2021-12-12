@@ -6,3 +6,4 @@ const int PORTFOLIO_PAGE = 4;
 const int SIGN_UP_PAGE = 5;
 const int AUTH_PAGE = 6;
 const int INTRODUCTION_PAGE = 7;
+const int REQUEST_PAGE = 8;

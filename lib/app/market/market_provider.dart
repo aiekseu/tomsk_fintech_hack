@@ -20,6 +20,8 @@ final pressedButtonProvider = StateProvider<String>((ref) => CATEGORY_UP);
 
 final searchCompanyProvider = StateProvider<String>((ref) => "");
 
+final chosenRequestProvider = StateProvider<Request?>((ref) => null);
+
 final requestsCashFlowProvider = FutureProvider<List<RequestCashFlow>>((ref) async {
   final requestCashFlow = await http.get(Uri.parse('https://fintech-hack2.herokuapp.com/api/request_cash_flow/'));
   final _requestCashFlowList = <RequestCashFlow>[];

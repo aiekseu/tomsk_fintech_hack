@@ -7,6 +7,7 @@ import 'package:tomks_fintech_hack/app/introduction/introduction_page.dart';
 import 'package:tomks_fintech_hack/app/market/market_page.dart';
 import 'package:tomks_fintech_hack/app/my_company/my_company_page.dart';
 import 'package:tomks_fintech_hack/app/portfolio/portfolio_page.dart';
+import 'package:tomks_fintech_hack/app/market/request_page.dart';
 import 'package:tomks_fintech_hack/app/sign_up/sign_up_page.dart';
 import 'package:tomks_fintech_hack/constants/pages_ids.dart';
 import 'package:tomks_fintech_hack/widgets/bottom_navigation_bar.dart';
@@ -21,13 +22,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyNavigation(),
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyNavigation(),
     );
   }
 }
@@ -37,60 +38,65 @@ class MyNavigation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, watch) {
-  final bottomNavIndex = watch(bottomNavIndexProvider);
+    final bottomNavIndex = watch(bottomNavIndexProvider);
 
-  Widget? _getBody() {
-    switch (bottomNavIndex.state) {
-      case MY_COMPANY_PAGE:
-        {
-          return MyCompanyPage();
-        }
-      case MARKET_PAGE:
-        {
-          return MarketPage();
-        }
-      case FEED_PAGE:
-        {
-          return FeedPage();
-        }
-      case FAQ_PAGE:
-        {
-          return FAQPage();
-        }
-      case PORTFOLIO_PAGE:
-        {
-          return PortfolioPage();
-        }
-      // case SIGN_UP_PAGE:
-      //   {
-      //     return SignUpPage();
-      //   }
-      // case AUTH_PAGE:
-      //   {
-      //     return AuthPage();
-      //   }
+    Widget? _getBody() {
+      switch (bottomNavIndex.state) {
+        case MY_COMPANY_PAGE:
+          {
+            return MyCompanyPage();
+          }
+        case MARKET_PAGE:
+          {
+            return MarketPage();
+          }
+        case FEED_PAGE:
+          {
+            return FeedPage();
+          }
+        case FAQ_PAGE:
+          {
+            return FAQPage();
+          }
+        case PORTFOLIO_PAGE:
+          {
+            return PortfolioPage();
+          }
+        case REQUEST_PAGE:
+          {
+            return RequestPage();
+          }
+        // case SIGN_UP_PAGE:
+        //   {
+        //     return SignUpPage();
+        //   }
+        // case AUTH_PAGE:
+        //   {
+        //     return AuthPage();
+        //   }
+      }
     }
-  }
 
-  if (bottomNavIndex.state == INTRODUCTION_PAGE){
-    return IntroductionPage();
-  }
-  if (bottomNavIndex.state == AUTH_PAGE){
-    return AuthPage();
-  }
-  if (bottomNavIndex.state == SIGN_UP_PAGE){
-    return SignUpPage();
-  }
+    if (bottomNavIndex.state == INTRODUCTION_PAGE) {
+      return IntroductionPage();
+    }
+    if (bottomNavIndex.state == AUTH_PAGE) {
+      return AuthPage();
+    }
+    if (bottomNavIndex.state == SIGN_UP_PAGE) {
+      return SignUpPage();
+    }
 
-  return Scaffold(
-        // appBar: AppBar(
-        //   title: Text('${appBarName.state}'),
-        //   actions: _getAppBarActions(),
-        // ),
-        body: _getBody(),
-        floatingActionButton: MyFloatingActionButton(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: MyNavigationBar(),
-      );
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Text('${appBarName.state}'),
+      //   actions: _getAppBarActions(),
+      // ),
+      backgroundColor: Color(0xffF7FBFF),
+      body: _getBody(),
+      floatingActionButton: MyFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: MyNavigationBar(),
+    );
   }
 }
