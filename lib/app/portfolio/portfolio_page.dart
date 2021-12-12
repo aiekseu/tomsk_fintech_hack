@@ -16,30 +16,35 @@ class PortfolioPage extends ConsumerWidget {
       if (userVerified.state) {
         return Text('Верифицированный пользователь');
       } else {
-        return SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 80,
-          child: Card(
-            color: Colors.blueAccent[100],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Center(
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.security,
-                    size: 65,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Пройти верификацию',
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-                ],
+        return InkWell(
+          onTap: (){
+            userVerified.state = true;
+          },
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 80,
+            child: Card(
+              color: Colors.blueAccent[100],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Center(
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.security,
+                      size: 65,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Пройти верификацию',
+                      style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

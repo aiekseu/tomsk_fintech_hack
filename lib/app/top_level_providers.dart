@@ -1,3 +1,4 @@
+import 'package:tomks_fintech_hack/app/portfolio/portfolio_page.dart';
 import 'package:tomks_fintech_hack/constants/pages_ids.dart';
 import 'package:tomks_fintech_hack/constants/pages_names.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,7 +17,7 @@ final userVerifiedProvider = StateProvider((ref) => false);
 final bottomNavIndexProvider = StateProvider<int>((ref) {
   if (!ref.watch(userCompleteIntroductionProvider).state) return INTRODUCTION_PAGE;
   if (!ref.watch(userCompleteAuthenticationProvider).state) return AUTH_PAGE;
-  return MARKET_PAGE;
+  return PORTFOLIO_PAGE;
 });
 
 final pageNameProvider = StateProvider<String?>((ref) {

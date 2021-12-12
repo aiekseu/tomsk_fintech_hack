@@ -77,7 +77,7 @@ class IntroductionPage extends ConsumerWidget {
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     bodyWidget: Text(
-                      "Многим бизнесам нужно финансирование для старта. инвестируйте в них, позвольте вашим деньгам работать на вас",
+                      "Многим стартапам нужно финансирование для старта. Инвестируйте в них, позвольте вашим деньгам работать на вас",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
@@ -90,7 +90,7 @@ class IntroductionPage extends ConsumerWidget {
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     bodyWidget: Text(
-                      "Вы будете финансировать стартапы, бизнесы, проекты. Вы станете полноценным владельцем доли бизнеса",
+                      "Вы будете финансировать стартапы, бизнесы, проекты. Будете помогать им расти",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
@@ -116,7 +116,7 @@ class IntroductionPage extends ConsumerWidget {
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
                     bodyWidget: Text(
-                      "Регистрируйте свой магазин, организацию, компанию - познакомьте ваш бизнес с другими",
+                      "Регистрируйте свой технологический стартап - познакомьте ваш бизнес с другими",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
